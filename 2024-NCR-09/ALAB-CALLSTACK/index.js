@@ -42,3 +42,26 @@ const nestedArray = [1, [2, [3, [4]], 5], [6, [7, [8, 9]]]];
 const flattenedArray = trampoline(trampolinedFlatten(nestedArray));
 console.log(flattenedArray); 
 
+
+//Part 3: Deferred Execution
+const outputElement = document.getElementById('output');
+
+function isPrime(num) {
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) return false;
+    }
+    return num > 1;
+}
+
+function displayPrimes(n, current = 1) {
+    if (current > n) {
+        alert('Calculation finished!');
+        return;
+    }
+    if (isPrime(current)) {
+        outputElement.innerHTML += current + '<br>';
+    }
+    setTimeout(() => displayPrimes(n, current + 1), 0);
+}
+
+displayPrimes(10000);
